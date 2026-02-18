@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci | Argabim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: var(--bg-deep);
+        }
+
+        .success-card {
+            background: var(--bg-surface);
+            padding: 4rem 2rem;
+            border-radius: 32px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--glass-shadow);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 132, 255, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 2rem;
+            border: 1px solid var(--border-active);
+            animation: pulse-blue 2s infinite;
+        }
+
+        @keyframes pulse-blue {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(0, 132, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--text-med));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        p {
+            color: var(--text-med);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero-mesh" style="opacity: 0.5;"></div>
+
+    <div class="success-card fade-up reveal">
+        <div class="success-icon">✓</div>
+        <h1>Merci !</h1>
+        <p>Votre demande a été transmise avec succès à notre équipe technique. Nous vous recontacterons sous 24h pour
+            discuter de votre projet.</p>
+        <a href="index.html" class="btn btn-primary" style="display: inline-block;">Retour à l'accueil</a>
+    </div>
+
+    <script>
+        // Déclenchement automatique des confettis ou effets si besoin
+        document.addEventListener('DOMContentLoaded', () => {
+            // Redirection automatique après 10 secondes si l'utilisateur ne fait rien
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 10000);
+        });
+    </script>
+</body>
+
+</html>

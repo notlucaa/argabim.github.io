@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /thanks.html
+Allow: /
+
+Sitemap: https://argabim.fr/sitemap.xml
