@@ -355,7 +355,7 @@ nav a:hover::after {
 }
 
 .hero-content h1 {
-    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-size: clamp(2.5rem, 8vw, 4.8rem);
     line-height: 1;
     font-weight: 800;
     color: var(--text-high);
