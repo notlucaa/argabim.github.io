@@ -50,8 +50,8 @@
             font-size: 2rem;
         }
 
-        .dashboard {
-            display: none;
+        .hidden {
+            display: none !important;
         }
 
         .header-bar {
@@ -118,36 +118,36 @@
 <body>
 
     <div class="admin-container">
+        <!-- LOADING STATE -->
+        <div id="init-loader">
+            <p>Chargement de l'interface...</p>
+        </div>
+
         <!-- LOGIN VIEW -->
-        <div id="login-view" class="login-box">
+        <div id="login-view" class="login-box hidden">
             <h1 class="section-title">Accès <span class="gradient-text">Privé</span></h1>
             <form id="login-form">
-                <div style="margin-bottom: 1.5rem; text-align: left;">
-                    <label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--text-med);">Email
-                        Admin</label>
-                    <input type="email" id="email" required placeholder="admin@argabim.fr"
-                        style="width: 100%; padding: 0.8rem; background: var(--bg-deep); border: 1px solid var(--border-light); border-radius: 8px; color: white;">
+                <div class="admin-form-group">
+                    <label for="email" class="admin-form-label">Email Admin</label>
+                    <input type="email" id="email" required placeholder="admin@argabim.fr" class="admin-form-input">
                 </div>
-                <div style="margin-bottom: 2rem; text-align: left;">
-                    <label for="password" style="display: block; margin-bottom: 0.5rem; color: var(--text-med);">Mot de
-                        passe</label>
-                    <input type="password" id="password" required placeholder="••••••••"
-                        style="width: 100%; padding: 0.8rem; background: var(--bg-deep); border: 1px solid var(--border-light); border-radius: 8px; color: white;">
+                <div class="admin-form-group mb-2">
+                    <label for="password" class="admin-form-label">Mot de passe</label>
+                    <input type="password" id="password" required placeholder="••••••••" class="admin-form-input">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; cursor: pointer;">Se
-                    connecter</button>
+                <button type="submit" class="btn btn-primary admin-btn">Se connecter</button>
             </form>
-            <p id="error-msg" style="color: #ff4444; margin-top: 1rem; display: none;"></p>
+            <p id="error-msg" class="admin-error-msg"></p>
         </div>
 
         <!-- DASHBOARD VIEW -->
-        <div id="dashboard-view" class="dashboard">
+        <div id="dashboard-view" class="dashboard hidden">
             <div class="header-bar">
                 <h2>Messages reçus</h2>
                 <button id="logout-btn" class="btn-danger">Déconnexion</button>
             </div>
 
-            <div style="overflow-x: auto;">
+            <div class="table-container">
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -162,20 +162,33 @@
                     </tbody>
                 </table>
             </div>
-            <div id="loading" style="text-align: center; padding: 2rem;">Chargement...</div>
+            <div id="loading" class="loading-message">Chargement...</div>
         </div>
     </div>
 
     <script>
+        // --- Configuration Supabase ---
         // --- Configuration Supabase ---
         const _0x1a2b = (str) => atob(str);
         const _0x4f3d = {
             u: 'aHR0cHM6Ly95dGpjaG15eWd3eGh6bHB1eXNwaS5zdXBhYmFzZS5jbw==',
             k: 'c2JfcHVibGlzaGFibGVfdWloOWEtNlRsdjBKMEpoaUREcWQzUV9fVVZUbGZVRQ=='
         };
-        const sbClient = window.supabase.createClient(_0x1a2b(_0x4f3d.u), _0x1a2b(_0x4f3d.k));
+
+        let sbClient;
+        try {
+            if (window.supabase) {
+                sbClient = window.supabase.createClient(_0x1a2b(_0x4f3d.u), _0x1a2b(_0x4f3d.k));
+            } else {
+                console.error("Supabase SDK not loaded");
+                document.body.innerHTML = "<div style='color:white;text-align:center;padding:2rem;'>Erreur critique : Impossible de charger le module de sécurité. Vérifiez votre connextion ou bloqueur de publicité.</div>";
+            }
+        } catch (e) {
+            console.error("Supabase Init Error:", e);
+        }
 
         // --- DOM Elements ---
+        const initLoader = document.getElementById('init-loader');
         const loginView = document.getElementById('login-view');
         const dashboardView = document.getElementById('dashboard-view');
         const loginForm = document.getElementById('login-form');
@@ -185,22 +198,33 @@
 
         // --- State Check ---
         async function checkSession() {
-            const { data: { session } } = await sbClient.auth.getSession();
-            if (session) {
-                showDashboard();
-            } else {
-                showLogin();
+            try {
+                if (!sbClient) throw new Error("Supabase non initialisé");
+
+                const { data, error } = await sbClient.auth.getSession();
+                if (error) throw error;
+
+                if (data && data.session) {
+                    showDashboard();
+                } else {
+                    showLogin();
+                }
+            } catch (err) {
+                console.error("Session check error:", err);
+                showLogin(); // Default to login on error (or show error state)
+            } finally {
+                if (initLoader) initLoader.style.display = 'none';
             }
         }
 
         function showLogin() {
-            loginView.style.display = 'block';
-            dashboardView.style.display = 'none';
+            loginView.classList.remove('hidden');
+            dashboardView.classList.add('hidden');
         }
 
         function showDashboard() {
-            loginView.style.display = 'none';
-            dashboardView.style.display = 'block';
+            loginView.classList.add('hidden');
+            dashboardView.classList.remove('hidden');
             fetchMessages();
         }
 

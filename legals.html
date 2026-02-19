@@ -14,64 +14,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <style>
-        body {
-            background: var(--bg-deep);
-            color: var(--text-med);
-            padding-top: 5rem;
-        }
 
-        .legal-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        h1 {
-            color: var(--text-high);
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 0.5rem;
-        }
-
-        p,
-        li {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        strong {
-            color: var(--text-high);
-        }
-
-        a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: var(--text-low);
-            font-size: 0.9rem;
-        }
-
-        .back-link:hover {
-            color: var(--primary);
-        }
-    </style>
 </head>
 
-<body>
+<body class="legal-page-body">
 
     <div class="legal-container">
         <a href="index.html" class="back-link">← Retour au site</a>
@@ -85,14 +31,14 @@
             <strong>Adresse :</strong> 1455 Rte du Colonel Maurice Bellec, 13100 Aix-en-Provence<br>
             <strong>Téléphone :</strong> 06 58 83 18 66<br>
             <strong>Email :</strong> contact@argabim.fr<br>
-            <!-- <strong>SIRET :</strong> [Numéro SIRET à compléter] -->
+            <strong>SIRET :</strong> [À compléter]
         </p>
 
         <h2>2. Hébergement</h2>
         <p>
             Ce site est hébergé par :<br>
-            <em>[Nom de l'hébergeur, ex: Vercel Inc. ou IONOS]</em><br>
-            <em>[Adresse de l'hébergeur]</em>
+            <strong>GihHub Pages / Vercel / Netlify</strong> (À confirmer)<br>
+            [Adresse de l'hébergeur]
         </p>
 
         <h2>3. Propriété Intellectuelle</h2>
@@ -119,7 +65,7 @@
             Aucune donnée publicitaire n'est collectée sans votre consentement.
         </p>
 
-        <div style="margin-top: 4rem; text-align: center; font-size: 0.8rem; color: var(--text-low);">
+        <div class="legal-footer">
             Dernière mise à jour : Février 2026
         </div>
     </div>

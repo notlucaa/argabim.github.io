@@ -177,9 +177,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Timestamp when the form/page loaded to detect instant bot submissions
     const formLoadTime = Date.now();
 
-    if (quoteForm && _supabase) {
+    if (quoteForm) {
         quoteForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // --- Check if Supabase is initialized ---
+            if (!_supabase) {
+                alert("Le service d'envoi est temporairement indisponible (SDK non chargé). Veuillez nous contacter par téléphone.");
+                console.error("Supabase SDK not initialized.");
+                return;
+            }
 
             // --- 4.0. Time-Based Bot Detection (< 2 seconds) ---
             if (Date.now() - formLoadTime < 2000) {
@@ -278,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     } else {
-        console.warn("Connexion Supabase non établie ou formulaire manquant.");
+        console.warn("Formulaire de devis introuvable.");
     }
 
     // --- 5. Smooth Anchor Links (with Offset) ---
@@ -581,9 +588,22 @@ function init3DBuilding(retryCount = 0) {
         previousMousePosition = { x: e.clientX, y: e.clientY };
     });
 
-    // --- ANIMATION LOOP ---
+    // --- ANIMATION LOOP & OPTIMIZATION ---
+    let isVisible = true;
+
+    // Observer to pause rendering when off-screen (Performance)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isVisible = entry.isIntersecting;
+        });
+    }, { threshold: 0 });
+    observer.observe(container);
+
     function animate() {
         requestAnimationFrame(animate);
+
+        // Skip rendering if not visible to save battery/GPU
+        if (!isVisible) return;
 
         // Auto-rotation when not dragging
         if (!isDragging) {

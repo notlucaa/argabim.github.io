@@ -121,21 +121,20 @@
 
     <!-- Sidebar Navigation Indicator -->
     <div class="side-nav-container">
-        <a href="#home" class="side-dot" data-label="Accueil"></a>
-        <a href="#about" class="side-dot" data-label="Expertise"></a>
-        <a href="#services" class="side-dot" data-label="Services"></a>
-        <a href="#commitments" class="side-dot" data-label="Engagements"></a>
-        <a href="#works" class="side-dot" data-label="Travaux"></a>
-        <a href="#process" class="side-dot" data-label="Méthode"></a>
-        <a href="#contact" class="side-dot" data-label="Contact"></a>
+        <a href="#home" class="side-dot" data-label="Accueil" aria-label="Accueil"></a>
+        <a href="#about" class="side-dot" data-label="Expertise" aria-label="Expertise"></a>
+        <a href="#services" class="side-dot" data-label="Services" aria-label="Services"></a>
+        <a href="#commitments" class="side-dot" data-label="Engagements" aria-label="Engagements"></a>
+        <a href="#works" class="side-dot" data-label="Travaux" aria-label="Travaux"></a>
+        <a href="#process" class="side-dot" data-label="Méthode" aria-label="Méthode"></a>
+        <a href="#contact" class="side-dot" data-label="Contact" aria-label="Contact"></a>
     </div>
 
     <!-- Navigation -->
     <header id="main-nav">
         <div class="container header-content">
             <a href="#home" class="logo-wrap">
-                <img src="ARGA logo 0.bmp" alt="Argabim" height="40" width="40"
-                    style="display: block; object-fit: contain;">
+                <img src="ARGA%20logo%200.bmp" alt="Argabim" height="40" width="40">
                 <div class="brand-name">ARGABIM</div>
             </a>
             <nav>
@@ -161,28 +160,26 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="home" style="position: relative;">
-            <canvas id="neural-canvas"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.4;"></canvas>
+        <section id="home">
+            <canvas id="neural-canvas"></canvas>
             <div class="hero-mesh"></div>
             <div class="container">
-                <div class="hero-content" style="position: relative;">
+                <div class="hero-content">
 
 
                     <span class="badge">Études Techniques</span>
-                    <h1 style="min-height: auto; margin-bottom: 1.5rem;">Superviser son chantier, <span
-                            class="gradient-text">donner vie</span> à ses projets !</h1>
-                    <p style="margin-bottom: 1.5rem;">Déléguez la supervision du terrain et développez l'avenir de votre
+                    <h1>Superviser son chantier, <span class="gradient-text">donner vie</span> à ses projets !</h1>
+                    <p>Déléguez la supervision du terrain et développez l'avenir de votre
                         entreprise.</p>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 2rem; color: var(--text-med);">
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="color: var(--primary);">✓</span> Une gestion technique constante de vos projets
+                    <ul class="hero-list">
+                        <li class="hero-list-item">
+                            <span class="hero-check">✓</span> Une gestion technique constante de vos projets
                         </li>
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="color: var(--primary);">✓</span> La croissance optimale dont vous rêvez
+                        <li class="hero-list-item">
+                            <span class="hero-check">✓</span> La croissance optimale dont vous rêvez
                         </li>
-                        <li style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="color: var(--primary);">✓</span> Pouvoir optimiser votre commerce sans stress
+                        <li class="hero-list-item">
+                            <span class="hero-check">✓</span> Pouvoir optimiser votre commerce sans stress
                         </li>
                     </ul>
                     <div class="cta-group">
@@ -190,24 +187,18 @@
                     </div>
                 </div>
                 <!-- 3D Object Absolute Positioning -->
-                <div id="building-3d-container"
-                    style="position: absolute; right: -5%; top: 50%; transform: translateY(-50%); width: 55%; height: 80vh; z-index: 1; pointer-events: all;">
-                </div>
+                <div id="building-3d-container"></div>
             </div>
         </section>
 
         <!-- About / Vision Section -->
         <section id="about">
-            <div class="container fade-up"
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+            <div class="container fade-up about-grid">
 
                 <!-- Left Column: Badge and Text (Very tight spacing) -->
-                <div style="text-align: left;">
-                    <span class="badge"
-                        style="display: inline-block; font-size: 1.1rem; padding: 0.7rem 1.6rem; margin-bottom: 1.5rem;">Qui
-                        sommes-nous</span>
-                    <p
-                        style="font-size: 1.15rem; line-height: 1.9; color: var(--text-med); margin: 0; font-weight: 400;">
+                <div class="about-text-col">
+                    <span class="badge about-badge">Qui sommes-nous</span>
+                    <p class="about-description">
                         ARGABIM est bien plus qu'un bureau d'études. Basés au cœur de Marseille (13013), nous sommes
                         le pivot central entre la vision architecturale et la réalité structurelle. Sous l'impulsion
                         d'Erwan DUPONT-HUIN, notre équipe transforme les défis techniques en solutions fluides.
@@ -215,24 +206,20 @@
                 </div>
 
                 <!-- Right Column: Title and Stats (Lowered) -->
-                <div
-                    style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 2.5rem; margin-top: 0;">
-                    <h2 class="section-title"
-                        style="margin: 0; text-align: right; max-width: 800px; line-height: 1.2; font-size: 3rem;">
+                <div class="about-stats-col">
+                    <h2 class="section-title about-title">
                         La Rigueur au service <br>
                         de la <span class="gradient-text">Créativité</span>
                     </h2>
 
-                    <div style="display: flex; gap: 3rem; justify-content: flex-end; align-items: flex-start;">
-                        <div class="stat-item"
-                            style="text-align: right; border-right: 2px solid var(--primary); padding-right: 1.5rem; padding-left: 0; background: none; box-shadow: none; margin: 0;">
-                            <h4 style="font-size: 2.5rem; margin-bottom: 0.5rem;">1+</h4>
-                            <p style="color: var(--text-med); font-weight: 600;">An d'Excellence</p>
+                    <div class="about-stats-wrapper">
+                        <div class="stat-item about-stat-item primary-border">
+                            <h4 class="about-stat-number">1+</h4>
+                            <p class="about-stat-label">An d'Excellence</p>
                         </div>
-                        <div class="stat-item"
-                            style="text-align: right; border-right: 2px solid var(--accent); padding-right: 1.5rem; padding-left: 0; background: none; box-shadow: none; margin: 0;">
-                            <h4 style="font-size: 2.5rem; margin-bottom: 0.5rem;">100%</h4>
-                            <p style="color: var(--text-med); font-weight: 600;">Marseille Local</p>
+                        <div class="stat-item about-stat-item accent-border">
+                            <h4 class="about-stat-number">100%</h4>
+                            <p class="about-stat-label">Marseille Local</p>
                         </div>
                     </div>
                 </div>
@@ -252,11 +239,11 @@
                     <div class="service-flip-container fade-up" onclick="this.classList.toggle('flipped')">
                         <div class="flipper">
                             <div class="card-front">
-                                <div class="icon-box" style="transform: scale(1.5); margin-bottom: 2rem;">⏱️</div>
-                                <h3 style="text-align: center; margin: 0;">Gestion & Délais</h3>
+                                <div class="icon-box">⏱️</div>
+                                <h3>Gestion & Délais</h3>
                             </div>
                             <div class="card-back">
-                                <p style="font-size: 1.15rem; line-height: 1.6; text-align: center;">Maîtrise absolue du
+                                <p>Maîtrise absolue du
                                     planning opérationnel pour garantir une livraison sans compromis, même sur les
                                     projets les plus tendus.</p>
                             </div>
@@ -267,11 +254,11 @@
                     <div class="service-flip-container fade-up" onclick="this.classList.toggle('flipped')">
                         <div class="flipper">
                             <div class="card-front">
-                                <div class="icon-box" style="transform: scale(1.5); margin-bottom: 2rem;">🔗</div>
-                                <h3 style="text-align: center; margin: 0;">Interfaçage</h3>
+                                <div class="icon-box">🔗</div>
+                                <h3>Interfaçage</h3>
                             </div>
                             <div class="card-back">
-                                <p style="font-size: 1.15rem; line-height: 1.6; text-align: center;">Coordination
+                                <p>Coordination
                                     stratégique entre tous les corps d'état. Nous parlons le langage des architectes
                                     comme celui des ingénieurs.</p>
                             </div>
@@ -282,11 +269,11 @@
                     <div class="service-flip-container fade-up" onclick="this.classList.toggle('flipped')">
                         <div class="flipper">
                             <div class="card-front">
-                                <div class="icon-box" style="transform: scale(1.5); margin-bottom: 2rem;">🏗️</div>
-                                <h3 style="text-align: center; margin: 0;">Coordination</h3>
+                                <div class="icon-box">🏗️</div>
+                                <h3>Coordination</h3>
                             </div>
                             <div class="card-back">
-                                <p style="font-size: 1.15rem; line-height: 1.6; text-align: center;">Pilotage complet du
+                                <p>Pilotage complet du
                                     cycle de vie constructif, assurant une conformité parfaite avec les études
                                     techniques initiales.</p>
                             </div>
@@ -297,11 +284,11 @@
                     <div class="service-flip-container fade-up" onclick="this.classList.toggle('flipped')">
                         <div class="flipper">
                             <div class="card-front">
-                                <div class="icon-box" style="transform: scale(1.5); margin-bottom: 2rem;">🛡️</div>
-                                <h3 style="text-align: center; margin: 0;">Évaluation Technique</h3>
+                                <div class="icon-box">🛡️</div>
+                                <h3>Évaluation Technique</h3>
                             </div>
                             <div class="card-back">
-                                <p style="font-size: 1.15rem; line-height: 1.6; text-align: center;">Analyse de risques
+                                <p>Analyse de risques
                                     et résolution de points de blocage complexes directement sur site avec une
                                     réactivité totale.</p>
                             </div>
@@ -312,11 +299,11 @@
                     <div class="service-flip-container fade-up" onclick="this.classList.toggle('flipped')">
                         <div class="flipper">
                             <div class="card-front">
-                                <div class="icon-box" style="transform: scale(1.5); margin-bottom: 2rem;">🎓</div>
-                                <h3 style="text-align: center; margin: 0;">Formation BIM</h3>
+                                <div class="icon-box">🎓</div>
+                                <h3>Formation BIM</h3>
                             </div>
                             <div class="card-back">
-                                <p style="font-size: 1.15rem; line-height: 1.6; text-align: center;">Accompagnement des
+                                <p>Accompagnement des
                                     équipes dans la transition numérique et l'adoption des standards de modélisation
                                     avancés.</p>
                             </div>
@@ -327,11 +314,11 @@
                     <div class="service-flip-container fade-up" onclick="this.classList.toggle('flipped')">
                         <div class="flipper">
                             <div class="card-front">
-                                <div class="icon-box" style="transform: scale(1.5); margin-bottom: 2rem;">📊</div>
-                                <h3 style="text-align: center; margin: 0;">Optimisation Coûts</h3>
+                                <div class="icon-box">📊</div>
+                                <h3>Optimisation Coûts</h3>
                             </div>
                             <div class="card-back">
-                                <p style="font-size: 1.15rem; line-height: 1.6; text-align: center;">Ingénierie de la
+                                <p>Ingénierie de la
                                     valeur pour réduire les dépenses sans impacter la qualité structurelle ou
                                     l'esthétique finale.</p>
                             </div>
@@ -342,13 +329,13 @@
         </section>
 
         <!-- Commitments Section -->
-        <section id="commitments" style="background: var(--bg-deep);">
+        <section id="commitments">
             <div class="container">
                 <div class="contact-flex">
                     <div class="fade-up">
                         <span class="badge">Pourquoi nous</span>
                         <h2 class="section-title">Nos <span class="gradient-text">Engagements</span></h2>
-                        <p style="margin-top: 2rem;">Nous ne nous contentons pas de bâtir des structures, nous bâtissons
+                        <p class="commitments-intro">Nous ne nous contentons pas de bâtir des structures, nous bâtissons
                             des relations de confiance durables basées sur trois piliers fondamentaux.</p>
                     </div>
                     <div class="commitments-list">
@@ -393,8 +380,7 @@
                     <!-- Project 1 -->
                     <div class="project-card fade-up">
                         <span class="project-tag">Résidentiel</span>
-                        <div class="project-img-placeholder"
-                            style="background: linear-gradient(160deg, #1e293b, #0f172a);"></div>
+                        <div class="project-img-placeholder residentiel"></div>
                         <div class="project-overlay">
                             <h3>Résidence Le Prado</h3>
                             <p>Marseille 08 • Coordination BIM & Synthèse</p>
@@ -402,10 +388,9 @@
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="project-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="project-card fade-up delay-200">
                         <span class="project-tag">Tertiaire</span>
-                        <div class="project-img-placeholder"
-                            style="background: linear-gradient(160deg, #334155, #1e293b);"></div>
+                        <div class="project-img-placeholder tertiaire"></div>
                         <div class="project-overlay">
                             <h3>Bureaux Euroméditerranée</h3>
                             <p>Marseille 02 • Audit Technique</p>
@@ -413,10 +398,9 @@
                     </div>
 
                     <!-- Project 3 -->
-                    <div class="project-card fade-up" style="transition-delay: 0.4s;">
+                    <div class="project-card fade-up delay-400">
                         <span class="project-tag">Mixte</span>
-                        <div class="project-img-placeholder"
-                            style="background: linear-gradient(160deg, #0f172a, #020617);"></div>
+                        <div class="project-img-placeholder mixte"></div>
                         <div class="project-overlay">
                             <h3>Ilot La Joliette</h3>
                             <p>Marseille 02 • Études & Exécution</p>
@@ -502,16 +486,15 @@
                         </ul>
                     </div>
 
-                    <div class="contact-card fade-up" style="background: var(--bg-surface);">
+                    <div class="contact-card fade-up">
                         <form id="quote-form">
                             <!-- Honeypot for Anti-Spam (Hidden for humans) -->
-                            <div style="display: none;">
+                            <div class="honeypot">
                                 <label for="website_check">Website</label>
                                 <input type="text" id="website_check" name="website_check" tabindex="-1"
                                     autocomplete="off">
                             </div>
-                            <div
-                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="form-row">
                                 <div>
                                     <label for="first_name">Prénom</label>
                                     <input type="text" id="first_name" name="first_name" required placeholder="Jean">
@@ -521,16 +504,16 @@
                                     <input type="text" id="last_name" name="last_name" required placeholder="Dupont">
                                 </div>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
+                            <div class="form-group">
                                 <label for="email">Votre Email</label>
                                 <input type="email" id="email" name="email" required placeholder="votre@email.fr">
                             </div>
-                            <div style="margin-bottom: 2rem;">
+                            <div class="form-group-lg">
                                 <label for="message">Détails du projet</label>
                                 <textarea id="message" name="message" rows="4" required
                                     placeholder="Décrivez vos besoins techniques..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer la
+                            <button type="submit" class="btn btn-primary btn-full">Envoyer la
                                 demande</button>
                         </form>
                     </div>
@@ -544,10 +527,9 @@
             <div class="footer-grid">
                 <!-- Brand -->
                 <div class="footer-col">
-                    <div class="brand-name"
-                        style="margin-bottom: 1rem; display:inline-block; font-weight:800; font-size:1.5rem; letter-spacing:-1px; color:white;">
+                    <div class="brand-name">
                         ARGABIM</div>
-                    <p style="color: var(--text-med); line-height: 1.6;">
+                    <p>
                         Bureau d'études techniques et coordination de construction. La rigueur au service de vos
                         ambitions.
                     </p>
@@ -569,7 +551,7 @@
                 <div class="footer-col">
                     <h4>Nous contacter</h4>
                     <ul class="footer-links">
-                        <li style="color:var(--text-med)">1455 Rte du Colonel Maurice Bellec, 13100 Aix-en-Provence</li>
+                        <li>1455 Rte du Colonel Maurice Bellec, 13100 Aix-en-Provence</li>
                         <li><a href="mailto:contact@argabim.fr">contact@argabim.fr</a></li>
                         <li><a href="tel:+33658831866">06 58 83 18 66</a></li>
                     </ul>
