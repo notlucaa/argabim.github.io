@@ -1482,6 +1482,24 @@ footer {
     background: linear-gradient(160deg, #0f172a, #020617);
 }
 
+.project-img-placeholder.hrbt {
+    background-image: url('HRBT.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-img-placeholder.iter {
+    background-image: url('ITER.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-img-placeholder.rjh {
+    background-image: url('nucleair-reacteur.png');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Subtle background pattern for placeholder */
 .project-img-placeholder::before {
     content: '';
