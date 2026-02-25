@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Sidebar navigation dots logic
         // Updated ordered list of sections
-        const sections = ['home', 'about', 'services', 'commitments', 'works', 'process', 'contact'];
+        const sections = ['home', 'about', 'services', 'commitments', 'works', 'contact'];
         const dots = document.querySelectorAll('.side-dot');
 
         let currentSectionIndex = -1;
