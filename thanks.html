@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merci | Argabim</title>
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://argabim.fr; connect-src 'self' https://ytjchmyygwxhzlpuyspi.supabase.co;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -23,15 +30,8 @@
         <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
     </div>
 
-    <script>
-        // Déclenchement automatique des confettis ou effets si besoin
-        document.addEventListener('DOMContentLoaded', () => {
-            // Redirection automatique après 10 secondes si l'utilisateur ne fait rien
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 10000);
-        });
-    </script>
+    <!-- Main Script for Auto-Redirection -->
+    <script src="script.js"></script>
 </body>
 
 </html>

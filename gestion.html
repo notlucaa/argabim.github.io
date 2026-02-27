@@ -8,8 +8,10 @@
 
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://ytjchmyygwxhzlpuyspi.supabase.co https://cdn.jsdelivr.net;">
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://ytjchmyygwxhzlpuyspi.supabase.co;">
     <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
 
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,105 +19,15 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
 
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: var(--bg-deep);
-            padding: 2rem;
-        }
-
-        .admin-container {
-            width: 100%;
-            max-width: 1000px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: var(--glass-shadow);
-        }
-
-        .login-box {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        h1 {
-            color: var(--text-high);
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .header-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 1rem;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .data-table th,
-        .data-table td {
-            text-align: left;
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-light);
-            color: var(--text-med);
-        }
-
-        .data-table th {
-            color: var(--primary);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .data-table tr:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-low);
-            font-style: italic;
-        }
-
-        .btn-danger {
-            background: rgba(255, 50, 50, 0.1);
-            color: #ff4444;
-            border: 1px solid rgba(255, 50, 50, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-danger:hover {
-            background: rgba(255, 50, 50, 0.2);
-        }
-    </style>
-
-    <!-- Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase SDK with SRI -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4"
+        integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug"
+        crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="admin-body">
 
     <div class="admin-container">
         <!-- LOADING STATE -->
@@ -166,152 +78,8 @@
         </div>
     </div>
 
-    <script>
-        // --- Configuration Supabase ---
-        // --- Configuration Supabase ---
-        const _0x1a2b = (str) => atob(str);
-        const _0x4f3d = {
-            u: 'aHR0cHM6Ly95dGpjaG15eWd3eGh6bHB1eXNwaS5zdXBhYmFzZS5jbw==',
-            k: 'c2JfcHVibGlzaGFibGVfdWloOWEtNlRsdjBKMEpoaUREcWQzUV9fVVZUbGZVRQ=='
-        };
-
-        let sbClient;
-        try {
-            if (window.supabase) {
-                sbClient = window.supabase.createClient(_0x1a2b(_0x4f3d.u), _0x1a2b(_0x4f3d.k));
-            } else {
-                console.error("Supabase SDK not loaded");
-                document.body.innerHTML = "<div style='color:white;text-align:center;padding:2rem;'>Erreur critique : Impossible de charger le module de sécurité. Vérifiez votre connextion ou bloqueur de publicité.</div>";
-            }
-        } catch (e) {
-            console.error("Supabase Init Error:", e);
-        }
-
-        // --- DOM Elements ---
-        const initLoader = document.getElementById('init-loader');
-        const loginView = document.getElementById('login-view');
-        const dashboardView = document.getElementById('dashboard-view');
-        const loginForm = document.getElementById('login-form');
-        const errorMsg = document.getElementById('error-msg');
-        const messagesBody = document.getElementById('messages-body');
-        const loading = document.getElementById('loading');
-
-        // --- State Check ---
-        async function checkSession() {
-            try {
-                if (!sbClient) throw new Error("Supabase non initialisé");
-
-                const { data, error } = await sbClient.auth.getSession();
-                if (error) throw error;
-
-                if (data && data.session) {
-                    showDashboard();
-                } else {
-                    showLogin();
-                }
-            } catch (err) {
-                console.error("Session check error:", err);
-                showLogin(); // Default to login on error (or show error state)
-            } finally {
-                if (initLoader) initLoader.style.display = 'none';
-            }
-        }
-
-        function showLogin() {
-            loginView.classList.remove('hidden');
-            dashboardView.classList.add('hidden');
-        }
-
-        function showDashboard() {
-            loginView.classList.add('hidden');
-            dashboardView.classList.remove('hidden');
-            fetchMessages();
-        }
-
-        // --- Login Logic ---
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            errorMsg.style.display = 'none';
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            const { data, error } = await sbClient.auth.signInWithPassword({
-                email: email,
-                password: password,
-            });
-
-            if (error) {
-                console.error("Login Error:", error);
-                let msg = "Erreur de connexion.";
-                if (error.message.includes("Email not confirmed")) msg = "Veuillez confirmer votre email (vérifiez vos spams).";
-                if (error.message.includes("Invalid login credentials")) msg = "Email ou mot de passe incorrect.";
-
-                errorMsg.textContent = msg + " (Code: " + error.name + ")";
-                errorMsg.style.display = 'block';
-            } else {
-                showDashboard();
-            }
-        });
-
-        // --- Logout Logic ---
-        document.getElementById('logout-btn').addEventListener('click', async () => {
-            await sbClient.auth.signOut();
-            showLogin();
-        });
-
-        // --- Fetch Data ---
-        async function fetchMessages() {
-            loading.style.display = 'block';
-            messagesBody.innerHTML = '';
-
-            const { data, error } = await sbClient
-                .from('contacts')
-                .select('*')
-                .order('created_at', { ascending: false });
-
-            loading.style.display = 'none';
-
-            if (error) {
-                messagesBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: red;">Erreur chargement: ${error.message}</td></tr>`;
-                return;
-            }
-
-            if (!data || data.length === 0) {
-                messagesBody.innerHTML = `<tr><td colspan="4" class="empty-state">Aucun message pour le moment.</td></tr>`;
-                return;
-            }
-
-            data.forEach(msg => {
-                const date = new Date(msg.created_at).toLocaleDateString('fr-FR', {
-                    day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
-                });
-
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td style="white-space: nowrap;">${date}</td>
-                    <td><strong>${escapeHtml(msg.first_name)} ${escapeHtml(msg.last_name)}</strong></td>
-                    <td><a href="mailto:${escapeHtml(msg.email)}" style="color: var(--primary); text-decoration: none;">${escapeHtml(msg.email)}</a></td>
-                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(msg.message)}</td>
-                `;
-                messagesBody.appendChild(row);
-            });
-        }
-
-        // Util: Prevent XSS when displaying admin data
-        function escapeHtml(text) {
-            if (!text) return '';
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        // Init
-        checkSession();
-
-    </script>
+    <!-- Admin Logic -->
+    <script src="admin-script.js"></script>
 </body>
 
 </html>

@@ -154,6 +154,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 
+    // --- 3.1 Service Cards Flip (Replacing inline onclick) ---
+    document.querySelectorAll('.service-flip-container').forEach(card => {
+        card.addEventListener('click', function () {
+            this.classList.toggle('flipped');
+        });
+
+        // Add keyboard accessibility (Enter/Space to flip)
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.classList.toggle('flipped');
+            }
+        });
+    });
+
     // --- Supabase Configuration (Obfuscated) ---
     const _0x1a2b = (str) => atob(str);
     const _0x4f3d = {
@@ -443,6 +459,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         initParticles();
         animateNeural();
+    }
+
+    // --- 10. Thanks Page Auto-Redirection ---
+    if (document.body.classList.contains('thanks-page')) {
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 10000);
     }
 });
 
